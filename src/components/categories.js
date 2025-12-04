@@ -53,13 +53,18 @@ const categories = [
     name: "Link Utili",
     files: [
       { 
-        name: "http://xbrainiac.netlify.app", 
+        name: "http://brocametrics.netlify.app", 
         explicitname: "Modello 3D del Cervello", 
         dateAdded: "2024-12-15"  // Data fissa per il file
       },
       { 
-        name: "http://xchronos.netlify.app", 
+        name: "http://cogniline.netlify.app", 
         explicitname: "Linea Temporale - Dalla Filosofia alle Neuroscienze", 
+        dateAdded: "2024-12-15"  // Data fissa per il file
+      },
+      { 
+        name: "http://classmetrics.netlify.app", 
+        explicitname: "Supporto registro insegnanti", 
         dateAdded: "2024-12-15"  // Data fissa per il file
       }
     ]

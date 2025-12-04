@@ -1,39 +1,70 @@
 import React from 'react';
-import categories from './categories'; // Importa i dati
+import categories from './categories';
 
 const FileCategories = ({ onPreviewFile, onDownloadFile, onLinkClick }) => {
   return (
-    <div className="bg-slate-200 shadow rounded sm:grid sm:grid-cols-4 sm:gap-3">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
       {categories.map((category, index) => (
-        <div 
-          key={index} 
-          className="px-2 flex flex-col justify-between items-center mt-5 rounded min-h-full"
+        <div
+          key={index}
+          className="
+            min-h-full flex flex-col justify-between items-center rounded-xl 
+            bg-gradient-to-br from-slate-800/80 via-slate-900/90 to-black/90 
+            shadow-xl backdrop-blur-xl border border-white/5
+            hover:shadow-slate-900/60 transition-all duration-500
+          "
         >
-          <h2 className="text-lg text-center text-white bg-slate-900 rounded-sm font-semibold mb-2 w-full">
+          {/* Titolo categoria */}
+          <h2
+            className="
+              text-md text-center text-white tracking-wide font-semibold 
+              w-full px-3 py-2 rounded-t-xl 
+              bg-gradient-to-r from-blue-500/30 to-cyan-500/10
+              shadow-inner
+              hover:from-blue-500/60 hover:to-cyan-500/40 
+              transition-all duration-300
+            "
+          >
             {category.name}
           </h2>
-          <ul className="list-disc px-8 py-4 bg-slate-900 rounded-md w-full flex-grow flex flex-col">
+
+          {/* Lista contenuti */}
+          <ul
+            className="
+              w-full flex-grow flex flex-col gap-2 px-6 py-4
+            "
+          >
             {category.files.length > 0 ? (
               category.files.map((file, fileIndex) => (
                 <li
                   key={fileIndex}
-                  className="text-white sm:mt-3 hover:text-blue-600 cursor-pointer"
+                  className="
+                    text-slate-200 text-sm
+                    hover:text-cyan-400 cursor-pointer 
+                    transition-all duration-300
+                  "
                   onClick={() => {
-                    if (file.name.startsWith("http://") || file.name.startsWith("https://")) {
-                      // Chiama la funzione per incrementare il contatore dei link aperti
+                    if (
+                      file.name.startsWith('http://') ||
+                      file.name.startsWith('https://')
+                    ) {
                       onLinkClick(file.name);
                     } else {
-                      // Altrimenti, passa il file al modale di anteprima e incrementa i download
-                      onDownloadFile(); // Funzione per incrementare il contatore dei download
-                      onPreviewFile(file); // Funzione per la visualizzazione del file
+                      onDownloadFile();
+                      onPreviewFile(file);
                     }
                   }}
                 >
-                  {file.explicitname} <span className="select-none text-sm text-gray-400">({file.dateAdded})</span>
+                  {file.explicitname}
+                  <span className="select-none text-xs text-slate-500 ml-1">
+                    ({file.dateAdded})
+                  </span>
                 </li>
               ))
             ) : (
-              <li className="text-white sm:mt-3">Nessun file disponibile</li>
+              <li className="text-slate-400 text-sm">
+                Nessun file disponibile
+              </li>
             )}
           </ul>
         </div>

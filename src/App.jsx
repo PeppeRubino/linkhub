@@ -61,6 +61,12 @@ function App() {
     window.open(url, "_blank", "noopener noreferrer");
   };
 
+  // optional: className da passare ai singoli card (FileCategories può scegliere di usarla)
+  const categoryCardClass =
+    "group relative rounded-lg p-4 md:p-6 transition transform hover:-translate-y-1 hover:scale-[1.01] " +
+    "bg-gradient-to-br from-white/60 to-slate-50/80 dark:from-slate-800/40 dark:to-slate-700/25 " +
+    "shadow-lg hover:shadow-2xl ring-1 ring-slate-200/40";
+
   return (
     <div className="bg-gray-100 px-5 min-h-screen select-none">
       {/* Header */}
@@ -83,7 +89,7 @@ function App() {
       </div>
 
       {/* Aforisma che cambia */}
-      <div className="text-lg md:text-xl mt-6 h-48 md:h-64 bg-gradient-to-b from-white to-slate-300 shadow flex justify-center items-center relative overflow-hidden">
+      <div className="text-lg md:text-xl mt-6 h-48 md:h-64 bg-gradient-to-b from-white to-slate-300 shadow flex justify-center items-center relative overflow-hidden rounded-lg">
         <div className="absolute inset-0 bg-cover bg-center opacity-20 scale-x-[-1]">
           <video
             autoPlay
@@ -110,13 +116,28 @@ function App() {
         <SearchFiles />
       </div>
 
-      {/* Sezione File Categorie */}
+      {/* Sezione File Categorie (wrapper con gradient/ombre/glassmorphism) */}
       <div className="mt-6 mb-6 h-full">
-        <FileCategories 
-          onPreviewFile={handlePreview} 
-          onDownloadFile={handleDownload} 
-          onLinkClick={handleLinkClick} 
-        />
+        <div
+          className="
+            rounded-2xl
+            p-4 md:p-6
+            bg-gradient-to-br from-white/70 via-sky-50/40 to-indigo-50/20
+            shadow-2xl
+            ring-1 ring-slate-200/40
+            backdrop-blur-sm
+            transition
+          "
+        >
+          {/* opzionale: passa classi utili se FileCategories supporta props */}
+          <FileCategories
+            onPreviewFile={handlePreview}
+            onDownloadFile={handleDownload}
+            onLinkClick={handleLinkClick}
+            cardClassName={categoryCardClass}
+            containerClassName="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          />
+        </div>
       </div>
 
       {/* Modale di Anteprima */}
