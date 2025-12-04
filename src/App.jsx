@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './index.css'; // Assicurati che Tailwind sia configurato
 import Calendar from './components/Calendar';
-import InteractionTracker from './components/InteractionTracker';
 import Quotes from './components/Quotes';
 import SearchFiles from './components/SearchFiles';
 import FileCategories from './components/FileCategories';
@@ -63,37 +62,29 @@ function App() {
   };
 
   return (
-    <div className="bg-gray-100 px-5">
+    <div className="bg-gray-100 px-5 min-h-screen select-none">
       {/* Header */}
-      <div className="flex justify-between items-center p-10 bg-white shadow rounded w-full">
+      <div className="flex flex-col md:flex-row md:justify-between items-center p-4 md:p-10 bg-white shadow rounded w-full gap-4">
         {/* Calendar */}
-        <div className="">
+        <div className="w-full md:w-auto">
           <Calendar />
         </div>
 
-        {/* Testo e Foto centrati */}
-        <div className=" flex items-center justify-center">
-          <h1 className="text-2xl font-bold">Link</h1>
-          <img
-            src="/assets/img/logo.png"
-            alt="Logo"
-            className="w-20 h-20 bg-gray-300 rounded"
-          />
+        {/* Titolo Archivium */}
+        <div className="flex items-center justify-center">
+          <h1
+            className="text-xl md:text-2xl font-semibold tracking-widest text-gray-800 uppercase select-none"
+            aria-label="Archivium"
+          >
+            Archivium
+          </h1>
         </div>
-
-             {/* InteractionTracker */}
-      <div>
-        <InteractionTracker 
-          visitCount={visitCount}
-          downloadCount={downloadCount}
-          linkCount={linkCount} 
-        />
-      </div>
+      <div></div>
       </div>
 
       {/* Aforisma che cambia */}
-      <div className="text-xl mt-6 h-64 bg-gradient-to-b from-white to-slate-300 shaunded flex justify-center items-center relative">
-        <div className="absolute inset-0 bg-cover bg-center opacity-20  scale-x-[-1]">
+      <div className="text-lg md:text-xl mt-6 h-48 md:h-64 bg-gradient-to-b from-white to-slate-300 shadow flex justify-center items-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center opacity-20 scale-x-[-1]">
           <video
             autoPlay
             loop
@@ -109,10 +100,10 @@ function App() {
           </video>
         </div>
 
-        <div className="p-1 text-center text-slate-800">
+        <div className="p-2 text-center text-slate-800">
           <Quotes />
         </div>
-      </div> 
+      </div>
 
       {/* Sezione Cerca */}
       <div className="mt-6 p-4 bg-white shadow rounded">
@@ -134,7 +125,7 @@ function App() {
       </div>
 
       {/* Disclaimer */}
-      <div className="footer p-2 bg-white shadow rounded text-center mt-32">
+      <div className="footer p-2 bg-white shadow rounded text-center mt-12 md:mt-32">
         <p className="text-sm text-gray-600">
           Tutte le informazioni presenti su questo sito sono di dominio pubblico
           e condivise per uso collettivo. Si prega di non modificarle. Per
